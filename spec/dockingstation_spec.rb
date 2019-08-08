@@ -26,9 +26,9 @@ describe DockingStation do
 
   it 'bike docked?' do
     bike = Bike.new
-    expect(subject.dock_bike(bike)).to eq bike
+    expect(subject.dock_bike(bike)).to include bike
   end
-  
+
   it "can only charge if dock isnt empty" do
     expect(subject).to respond_to(:charge?)
   end
@@ -39,14 +39,15 @@ describe DockingStation do
     end
   end
 
-  describe '#dock_bike' do
-    it "should check if either dock have space for bikes" do
-      subject.dock_bike(Bike.new)
-      expect {subject.dock_bike Bike.new }.to raise_error ('No available spaces')
+   describe '#dock_bike' do
+  #   it "should check if either dock have space for bikes" do
+  #     subject.dock_bike(Bike.new)
+  #     expect {subject.dock_bike Bike.new }.to raise_error ('No available spaces')
+  #   end
+  #
+      it "raises an error when dock is full" do
+      20.times {subject.dock_bike Bike.new }
+      expect {subject.dock_bike Bike.new }.to raise_error 'No available spaces'
+      end
     end
-  end
-
-
-
-
-end
+  end# it '#dock_bike' do
