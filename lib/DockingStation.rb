@@ -29,12 +29,6 @@ attr_reader :Bikes
   def working
 
     end
-end
 
-class Collection
-
-  def initialize
-
-  end
 
 end
